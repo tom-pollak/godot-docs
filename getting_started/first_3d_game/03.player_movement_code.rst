@@ -135,7 +135,7 @@ call its ``normalize()`` method.
 
        if direction != Vector3.ZERO:
            direction = direction.normalized()
-           $Pivot.look_at(translation + direction, Vector3.UP)
+           $Pivot.look_at(position + direction, Vector3.UP)
 
  .. code-tab:: csharp
 
@@ -159,11 +159,11 @@ up direction. In this case, we can use the ``Vector3.UP`` constant.
 
 .. note::
 
-    A node's local coordinates, like ``translation``, are relative to their
+    A node's local coordinates, like ``position``, are relative to their
     parent. Global coordinates are relative to the world's main axes you can see
     in the viewport instead.
 
-In 3D, the property that contains a node's position is ``translation``. By
+In 3D, the property that contains a node's position is ``position``. By
 adding the ``direction`` to it, we get a position to look at that's one meter
 away from the *Player*.
 
@@ -184,8 +184,8 @@ fall speed separately. Be sure to go back one tab so the lines are inside the
         velocity.z = direction.z * speed
         # Vertical velocity
         velocity.y -= fall_acceleration * delta
-        # Moving the character
-        velocity = move_and_slide(velocity, Vector3.UP)
+        # Moving the character -- uses the characters current velocity
+        move_and_slide()
 
  .. code-tab:: csharp
 
